@@ -1,5 +1,7 @@
 import books from "./books";
+import cart from "./cart";
 
 export default {
-    books,
+  books,
+  cart,
 };
