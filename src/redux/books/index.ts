@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-import { RootState } from "../store";
+import type { RootState } from "../store";
 
 import booksData, { Book } from "../../mocks/books.mock";
 

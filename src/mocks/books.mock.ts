@@ -38,7 +38,8 @@ const books: Book[] = [
     year: 1977,
     description:
       "The Silmarillion is a book of J. R. R. Tolkien's legendarium, a history of the fictional world of Middle-earth. It was published in 1977, six years after Tolkien's death, by his son Christopher Tolkien, with assistance from his wife, Barbara, and other family members and friends. The Silmarillion is a compilation of earlier and unconnected tales, poems, and fictional histories that Tolkien had written since the 1920s. It is the source of much of the material in The Lord of the Rings and The Hobbit, and is the earliest published work of Middle-earth literature.",
-    image: "https://dynamic.indigoimages.ca/v1/books/books/0261102737/1.jpg?quality=10&sale=0",
+    image:
+      "https://dynamic.indigoimages.ca/v1/books/books/0261102737/1.jpg?quality=10&sale=0",
     price: 23.99,
   },
   {

@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import type { RootState } from "../store";
 
 import { Book } from "../../mocks/books.mock";
 
@@ -43,8 +44,8 @@ export const getCartTotal = createSelector(
 
     return Object.entries(items).reduce((acc, [id, quantity]) => {
       if (!cachedBooks[id]) {
-        const foundBook = books.find((book) => book.id === parseInt(id));
-        foundBook && (cachedBooks[id] = foundBook);
+        const foundBook = books.find((book) => book.id === Number(id));
+        if (foundBook) cachedBooks[id] = foundBook;
       }
 
       return acc + cachedBooks[id].price * quantity;
