@@ -4,11 +4,11 @@ import { RootState } from "../store";
 import { Book } from "../../mocks/books.mock";
 
 interface CartState {
-  bookIds: number[];
+  items: { [id: number]: number };
 }
 
 const initialState: CartState = {
-  bookIds: [],
+  items: {},
 };
 
 const booksSlice = createSlice({
@@ -16,48 +16,58 @@ const booksSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.bookIds.push(action.payload);
+      if (state.items[action.payload]) {
+        state.items[action.payload] += 1;
+      } else {
+        state.items[action.payload] = 1;
+      }
+    },
+    removeFromCart: (state, action) => {
+      if (state.items[action.payload] > 1) {
+        state.items[action.payload] -= 1;
+      }
+    },
+    removeEntireQuantityFromCart: (state, action) => {
+      delete state.items[action.payload];
     },
     wipeCartState: () => initialState,
   },
 });
 
 export const getCartTotal = createSelector(
-  (state: RootState) => state.cart.bookIds,
+  (state: RootState) => state.cart.items,
   (state: RootState) => state.books.books,
-  (bookIds, books) => {
+  (items, books) => {
     // store found books in hashmap for O(1) lookup instead of O(n) lookup with array.find(). gang gang
-    const cachedBooks: { [id: number]: Book } = {};
+    const cachedBooks: { [id: string]: Book } = {};
 
-    let totalPrice = 0;
-    for (const bookId of bookIds) {
-      if (cachedBooks[bookId]) {
-        totalPrice += cachedBooks[bookId].price;
-      } else {
-        const foundBook = books.find((book: Book) => book.id === bookId);
-        if (foundBook) {
-          totalPrice += foundBook.price;
-          cachedBooks[bookId] = foundBook;
-        }
+    return Object.entries(items).reduce((acc, [id, quantity]) => {
+      if (!cachedBooks[id]) {
+        const foundBook = books.find((book) => book.id === parseInt(id));
+        foundBook && (cachedBooks[id] = foundBook);
       }
-    }
 
-    return totalPrice;
+      return acc + cachedBooks[id].price * quantity;
+    }, 0);
   }
 );
 
 export const getQuantityOfBookId = createSelector(
-  (state: RootState) => state.cart.bookIds,
+  (state: RootState) => state.cart.items,
   (_: RootState, idToFind: number) => idToFind,
-  (booksIds, idToFind): number =>
-    booksIds.reduce((quantity, bookId) => {
-      if (bookId === idToFind) {
-        return quantity + 1;
-      }
-      return quantity;
-    }, 0)
+  (booksIds, idToFind): number => booksIds[idToFind] || 0
 );
 
-export const { addToCart, wipeCartState } = booksSlice.actions;
+export const getUniqueBooksInCart = createSelector(
+  (state: RootState) => state.cart.items,
+  (bookIds) => Object.keys(bookIds)
+);
+
+export const {
+  addToCart,
+  removeFromCart,
+  removeEntireQuantityFromCart,
+  wipeCartState,
+} = booksSlice.actions;
 
 export default booksSlice.reducer;
