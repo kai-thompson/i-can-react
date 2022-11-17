@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { getQuantityOfBookId, addAmountToCart } from "../redux/cart";
@@ -11,22 +12,25 @@ interface AddToCartProps {
 
 function AddToCart({ bookId }: AddToCartProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const quantityInCart = useAppSelector((state) =>
     getQuantityOfBookId(state, bookId)
   );
 
-  const [quantity, setQuantity] = useState<number>(quantityInCart);
+  const [quantity, setQuantity] = useState<number>(quantityInCart || 1);
 
   const handleAddToCart = () => {
     dispatch(addAmountToCart({ id: bookId, amount: quantity }));
   };
 
+  const handleProceedToCheckout = () => {
+    navigate("/cart");
+  };
+
   const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newQuantity = Number(e.target.value);
-    if (newQuantity >= 0) {
-      setQuantity(newQuantity);
-    }
+    setQuantity(newQuantity);
   };
 
   return (
@@ -47,12 +51,14 @@ function AddToCart({ bookId }: AddToCartProps) {
       </select>
       <button
         type="submit"
-        onClick={handleAddToCart}
+        onClick={
+          quantityInCart === quantity
+            ? handleProceedToCheckout
+            : handleAddToCart
+        }
         className="border-l-[1px] pl-4 ml-2"
       >
-        {quantityInCart > 0 && quantity !== quantityInCart
-          ? "Update cart"
-          : "Add to cart"}
+        {quantityInCart === quantity ? "Proceed to Cart" : "Add to Cart"}
       </button>
     </StyledButton>
   );
