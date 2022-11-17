@@ -13,22 +13,19 @@ function Product() {
   const book = useAppSelector((state) => getBookById(state, id));
 
   return (
-    <div className="flex">
+    <div className="flex justify-center pt-16">
       <img src={book?.image} alt={`${book?.title} cover`} />
-      <div>
+      <div className="flex flex-col ml-12 pt-14 pb-24">
         <BookDetails
           title={book?.title}
           author={book?.author}
           description={book?.description}
         />
-        <div>
-          <h1>
-            Price:
-            {book?.price}
-          </h1>
+        <div className="flex mt-auto items-center">
+          <h1 className="text-xl font-bold mr-8">${book?.price}</h1>
+          <AddToCart bookId={Number(book?.id)} />
         </div>
       </div>
-      <AddToCart bookId={Number(book?.id)} />
     </div>
   );
 }

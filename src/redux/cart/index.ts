@@ -23,6 +23,9 @@ const booksSlice = createSlice({
         state.items[action.payload] = 1;
       }
     },
+    addAmountToCart: (state, action) => {
+      state.items[action.payload.id] = action.payload.amount;
+    },
     removeFromCart: (state, action) => {
       if (state.items[action.payload] > 1) {
         state.items[action.payload] -= 1;
@@ -66,6 +69,7 @@ export const getUniqueBooksInCart = createSelector(
 
 export const {
   addToCart,
+  addAmountToCart,
   removeFromCart,
   removeEntireQuantityFromCart,
   wipeCartState,
