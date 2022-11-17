@@ -11,7 +11,7 @@ function Home() {
   const books = useAppSelector((state) => state.books.books);
 
   return (
-    <div className="flex flex-col justify-center pt-16">
+    <div className="flex flex-col justify-center pt-14">
       <div className="flex justify-center items-center">
         {books.slice(0, NUMBER_OF_BOOKS_TO_DISPLAY).map((book) => (
           <Link

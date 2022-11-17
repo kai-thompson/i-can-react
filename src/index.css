@@ -7,4 +7,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position-y: 850px;
+
+  overflow-x: hidden;
 }
