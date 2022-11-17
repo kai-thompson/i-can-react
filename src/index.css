@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: linear-gradient(white, #4285f4);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-y: 850px;
+}

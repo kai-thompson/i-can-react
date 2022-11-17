@@ -17,7 +17,14 @@ module.exports = {
       "5xl": "3.25rem",
       "6xl": "5.5rem",
     },
-    extend: {},
+    extend: {
+      colors: {
+        blue: {
+          google: "#4285f4",
+          googleDark: "#3c79e6",
+        },
+      },
+    },
   },
   plugins: [],
 };
