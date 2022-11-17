@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { getBookById } from "../redux/books";
 import {
@@ -17,6 +19,7 @@ interface BookCartRowProps {
 
 function BookCartRow({ bookId }: BookCartRowProps) {
   const dispatch = useAppDispatch();
+
   const book = useAppSelector((state) => getBookById(state, bookId));
   const quantity = useAppSelector((state) =>
     getQuantityOfBookId(state, bookId)
@@ -24,16 +27,18 @@ function BookCartRow({ bookId }: BookCartRowProps) {
 
   return (
     <div className="flex border-2 p-4 mx-4 rounded shadow-md ">
-      <img
-        src={book?.image}
-        alt={`${book?.title} cover`}
-        className="object-contain h-24 w-auto rounded mr-4"
-      />
       <div className="flex justify-between w-full">
-        <div>
-          <h1 className="font-bold -mb-1.5 text-xl">{book?.title}</h1>
-          <h1>{book?.author}</h1>
-        </div>
+        <Link className="flex" to={`/product/${bookId}`}>
+          <img
+            src={book?.image}
+            alt={`${book?.title} cover`}
+            className="object-contain h-24 w-auto rounded mr-4"
+          />
+          <div>
+            <h1 className="font-bold -mb-1.5 text-xl">{book?.title}</h1>
+            <h1>{book?.author}</h1>
+          </div>
+        </Link>
         <div className="flex flex-col">
           <div className="flex">
             <h1 className="font-semibold text-lg text-right">${book?.price}</h1>

@@ -56,7 +56,7 @@ function AddToCart({ bookId }: AddToCartProps) {
             ? handleProceedToCheckout
             : handleAddToCart
         }
-        className="border-l-[1px] pl-4 ml-2"
+        className="border-l-[1px] pl-4 ml-2 whitespace-nowrap"
       >
         {quantityInCart === quantity ? "Proceed to Cart" : "Add to Cart"}
       </button>

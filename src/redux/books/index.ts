@@ -21,6 +21,10 @@ const booksSlice = createSlice({
 export const getBookById = createSelector(
   (state: RootState) => state.books.books,
   (_: RootState, bookId: number) => bookId,
+  /**
+   * This O(n) lookup is fine because the number of books is small.
+   * In a production app, something similar to React Query would be used to cache the results of the initially fetch for roughly 0(1) lookups.
+   */
   (books, bookId) => books.find((book: Book) => book.id === bookId)
 );
 

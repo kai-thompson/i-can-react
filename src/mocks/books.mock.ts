@@ -59,6 +59,37 @@ const books: Book[] = [
     image: "https://m.media-amazon.com/images/I/41fPsDUuGBL.jpg",
     price: 321.99,
   },
+  {
+    id: 6,
+    title: "The Return of the King",
+    author: "J.R.R. Tolkien",
+    year: 1955,
+    description:
+      "The Return of the King is the third and final volume of J. R. R. Tolkien's epic high fantasy novel The Lord of the Rings. It is preceded by The Fellowship of the Ring and The Two Towers, and followed by The Lord of the Rings: A Reader's Companion. The Return of the King is the longest of the three volumes in The Lord of the Rings, and is the third part of the story of the quest of the hobbits Frodo and Sam to destroy the One Ring. The Return of the King was published in 1955, and is set in Middle-earth, a fictional world in which the events of the story take place. The story began as a sequel to Tolkien's 1937 children's fantasy novel The Hobbit, but eventually developed into a much larger work. Written in stages between 1937 and 1949, The Lord of the Rings is one of the best-selling novels ever written, with over 150 million copies sold.",
+    image: "https://m.media-amazon.com/images/I/41Ld9BqaO9L.jpg",
+    price: 10.99,
+  },
+  {
+    id: 7,
+    title: "Unfinished Tales",
+    author: "J.R.R. Tolkien",
+    year: 1980,
+    description:
+      "Unfinished Tales is a collection of J. R. R. Tolkien's works, edited by his son Christopher Tolkien and published in 1980. It contains stories set in Middle-earth that were either unfinished at the time of Tolkien's death in 1973 or were not included in The Lord of the Rings and The Silmarillion. The book was published in hardcover by Houghton Mifflin Harcourt in 1980, and in paperback by HarperCollins in 1981. The book was a New York Times bestseller, and was nominated for the 1981 World Fantasy Award for Best Anthology.",
+    image: "https://m.media-amazon.com/images/I/61-NmEE5vCL.jpg",
+    price: 12.99,
+  },
+  {
+    id: 8,
+    title: "The Book of Lost Tales, Part Two",
+    author: "J.R.R. Tolkien",
+    year: 1984,
+    description:
+      "The Book of Lost Tales, Part Two is a collection of the earliest known versions of the stories that would later become The Silmarillion and The Lord of the Rings. It was published in 1984 by Christopher Tolkien, with a foreword by J. R. R. Tolkien. The book is a collection of the earliest known versions of the stories that would later become The Silmarillion and The Lord of the Rings. It was published in 1984 by Christopher Tolkien, with a foreword by J. R. R. Tolkien. The book is a collection of the earliest known versions of the stories that would later become The Silmarillion and The Lord of the Rings. It was published in 1984 by Christopher Tolkien, with a foreword by J. R. R. Tolkien.",
+    image:
+      "https://kbimages1-a.akamaihd.net/c09dc09c-8b88-4df8-a8da-2e301bc9005d/1200/1200/False/the-book-of-lost-tales-2-the-history-of-middle-earth-book-2.jpg",
+    price: 99.99,
+  },
 ];
 
 export default books;

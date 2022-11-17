@@ -15,7 +15,7 @@ function Cart() {
   const tax = useMemo(() => cartTotal * 0.13, [cartTotal]);
 
   return (
-    <div className="flex w-screen pt-24 justify-center">
+    <div className="flex w-screen py-24 justify-center">
       <div className="flex justify-between w-9/12">
         <div className="w-8/12">
           {uniqueIdsInCart.length === 0 && (
